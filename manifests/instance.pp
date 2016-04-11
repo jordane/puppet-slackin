@@ -49,10 +49,10 @@ define slackin::instance (
   $api_token = undef,
   Array[String] $channels = [],
   $css = undef,
-  String $ensure = "present",
-  String $hostname = "0.0.0.0",
+  String $ensure = 'present',
+  String $hostname = '0.0.0.0',
   Integer $interval = 5000,
-  Integer $port = "8080",
+  Integer $port = '8080',
   Boolean $silent = true,
   $team_id = undef,
 ) {
@@ -63,33 +63,36 @@ define slackin::instance (
 
   case $ensure {
     'present': {
-      user { "slackin-$name":
+      user { "slackin-${name}":
         ensure => present,
         shell  => '/sbin/nologin',
       }
 
-      file { "/usr/local/bin/slackin-$name":
+      file { "/usr/local/bin/slackin-${name}":
         ensure  => file,
-        owner   => "slackin-$name",
-        group   => "slackin-$name",
+        owner   => "slackin-${name}",
+        group   => "slackin-${name}",
         mode    => '0750',
         content => template('slackin/slackin.erb'),
-        require => User["slackin-$name"],
+        require => User["slackin-${name}"],
       }
 
       file { '/etc/systemd/system/slackin@.service':
         ensure  => file,
         source  => 'puppet:///modules/slackin/slackin@.service',
-        require => [User["slackin-$name"],File["/usr/local/bin/slackin-$name"]],
+        require => [User["slackin-${name}"],
+                    File["/usr/local/bin/slackin-${name}"]],
       }
 
-      service {"slackin@$name":
+      service {"slackin@${name}":
         ensure  => true,
         enable  => true,
         require => File['/etc/systemd/system/slackin@.service'],
       }
     }
     'absent': {
+    }
+    default: {
     }
   }
 }
