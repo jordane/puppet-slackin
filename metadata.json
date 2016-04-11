@@ -4,7 +4,7 @@
   "author": "jme",
   "summary": "Manages Slackin service",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/jordane/puppet-slackin",
   "project_page": null,
   "issues_url": null,
   "dependencies": [
