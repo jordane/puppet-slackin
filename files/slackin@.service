@@ -1,0 +1,8 @@
+[Unit]
+Description=Slackin service for %i
+
+[Service]
+ExecStart=/bin/bash -c "/usr/local/bin/slackin-%i"
+Restart=always
+RestartSec=5
+User=slackin-%i

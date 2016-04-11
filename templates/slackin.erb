@@ -1,0 +1,7 @@
+#!/bin/bash
+
+<% @args = "" -%>
+<% @args = "-p #{@port} -h #{@hostname} -i #{@interval}" -%>
+<% @args = "#{@args} -s" if @silent -%>
+<% @args = "#{@args} #{@team_id} #{@api_token}" -%>
+/opt/slackin/bin/slackin <%= @args %>
