@@ -52,7 +52,7 @@ define slackin::instance (
   String $ensure = 'present',
   String $hostname = '0.0.0.0',
   Integer $interval = 5000,
-  Integer $port = '8080',
+  Integer $port = 8080,
   Boolean $silent = true,
   $team_id = undef,
 ) {
